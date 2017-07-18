@@ -1,0 +1,7 @@
+<section class="content-header">
+    <h1 th:text="${pageTitle}"></h1>
+    <ol class="breadcrumb">
+        <li><a th:href="@{/admin/index.html}"><i class="fa fa-dashboard"></i> 主页</a></li>
+        <li class="active" th:text="${pageTitle}"></li>
+    </ol>
+</section>

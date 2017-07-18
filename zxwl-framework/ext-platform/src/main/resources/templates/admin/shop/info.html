@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="utf-8" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <import th:include="admin/include/head" th:remove="tag"/>
+    <link rel="stylesheet" th:href="@{/plugins/jquery-treegrid/css/jquery.treegrid.css}"/>
+    <link rel="stylesheet" th:href="@{/plugins/bootstrap-switch/css/bootstrap-switch.min.css}"/>
+    <style>
+        .input-sm {
+            border: none;
+            background-color: transparent;
+        }
+
+        .input-sm:hover {
+            border-radius: 0;
+            box-shadow: none;
+            border: 1px solid #ccc;
+            border-color: #d2d6de;
+            height: 30px;
+            padding: 5px 10px;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+    <import th:include="admin/include/layout" th:remove="tag"/>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <!--<import th:include="admin/include/title" th:remove="tag"/>-->
+
+        <!-- Main content -->
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">新增店铺</h4>
+        </div>
+        <form name="add_form" id="shop_form" method="post">
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="shop_name" class="control-label">店铺名称:</label>
+                            <input type="text" class="form-control" name="shop_name" id="shop_name" value=""
+                                   placeholder="请输入店铺名"/>
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <div class="form-group">
+                            <label for="logo" class="control-label">Logo:</label>
+                            <input type="text" class="form-control" name="logo" id="logo" value=""
+                                   placeholder="请输入Logo"/>
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="principal" class="control-label">负责人:</label>
+                            <input type="text" class="form-control" name="principal" id="principal" value=""
+                                   placeholder="请输入负责人姓名"/>
+                        </div>
+
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="principal_tel" class="control-label">负责人电话:</label>
+                            <input type="text" class="form-control" name="principal_tel" id="principal_tel" value=""
+                                   placeholder="请输入负责人电话"/>
+                        </div>
+
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="legal_name" class="control-label">法人:</label>
+                            <input type="text" class="form-control" name="legal_name" id="legal_name" value=""
+                                   placeholder="请输入法人姓名"/>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="business_url" class="control-label">营业执照:</label>
+                            <input type="text" class="form-control" name="business_url" id="business_url" value=""
+                                   placeholder="请输入营业执照"/>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="address" class="control-label">详细地址:</label>
+                            <input type="text" class="form-control" name="address" id="address" value=""
+                                   placeholder="请输入详细地址"/>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="img1" class="control-label">店铺图片:</label>
+                            <input type="text" class="form-control" name="img1" id="img1" value=""
+                                   placeholder="请输入店铺图片"/>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="content" class="control-label">图文信息:</label>
+                            <input type="text" class="form-control" name="content" id="content" value=""
+                                   placeholder="请输入图文信息"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">取消</button>
+                <button type="submit" class="btn btn-primary">保存</button>
+            </div>
+        </form>
+    </div>
+
+
+</div>
+<!--&lt;!&ndash; /.box-body &ndash;&gt;-->
+<!--</div>-->
+
+<!--&lt;!&ndash; /.content &ndash;&gt;-->
+<!--</div>-->
+<!--&lt;!&ndash; /.content-wrapper &ndash;&gt;-->
+
+<import th:include="admin/include/copyright" th:remove="tag"/>
+
+
+<!--
+<button class="btn btn-xs btn-danger">
+  <i class="fa fa-remove"></i>
+</button>
+-->
+<!--</div>-->
+<!-- ./wrapper -->
+<div th:include="admin/shop/form" th:remove="tag"></div>
+<import th:include="admin/include/footer" th:remove="tag"/>
+<script th:src="@{/plugins/jquery-treegrid/js/jquery.treegrid.min.js}"></script>
+<script th:src="@{/plugins/jquery-treegrid/js/jquery.treegrid.bootstrap3.js}"></script>
+<script th:src="@{/plugins/bootstrap-switch/js/bootstrap-switch.min.js}"></script>
+<!--<script th:inline="javascript">-->
+<!--//    var accessCreate = [[${user.hasAccessModuleAction('module', 'C')}]];-->
+<!--//    var accessUpdate = [[${user.hasAccessModuleAction('module', 'U')}]];-->
+<!--//    var accessDelete = [[${user.hasAccessModuleAction('module', 'D')}]];-->
+<!--</script>-->
+
+<script th:src="@{/js/admin/shop/treegrid.js}"></script>
+<script th:src="@{/js/admin/shop/shop.js}"></script>
+
+</body>
+</html>

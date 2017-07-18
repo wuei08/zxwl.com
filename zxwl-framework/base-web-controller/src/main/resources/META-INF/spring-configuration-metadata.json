@@ -1,0 +1,31 @@
+{
+  "groups": [
+    {
+      "name": "zxwl.access-logger",
+      "type": "java.lang.String",
+      "sourceType": "java.lang.String"
+    }
+  ],
+  "properties": [
+    {
+      "name": "zxwl.access-logger",
+      "type": "java.lang.String",
+      "sourceType": "java.lang.String"
+    }
+  ],
+  "hints": [
+    {
+      "name": "zxwl.access-logger",
+      "values": [
+        {
+          "value": "on",
+          "description": "enable access logger."
+        },
+        {
+          "value": "off",
+          "description": "enable access logger."
+        }
+      ]
+    }
+  ]
+}

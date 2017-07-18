@@ -1,0 +1,10 @@
+${AnsiColor.RED}
+__________.__          __    _____
+\______   \  | _____ _/  |__/ ____\___________  _____
+ |     ___/  | \__  \\   __\   __\/  _ \_  __ \/     \
+ |    |   |  |__/ __ \|  |  |  | (  <_> )  | \/  Y Y  \
+ |____|   |____(____  /__|  |__|  \____/|__|  |__|_|  /
+                    \/                              \/
+${AnsiColor.YELLOW}--------------------start-----------------------
+${AnsiColor.YELLOW}       :: ${AnsiColor.GREEN}Running ${AnsiColor.RED}${zxwl.app.name} ${AnsiColor.YELLOW}(${zxwl.app.version})
+${AnsiColor.YELLOW}------------------------------------------------${AnsiColor.WHITE}

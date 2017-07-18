@@ -1,0 +1,36 @@
+{
+  "groups": [
+    {
+      "name": "zxwl.app",
+      "type": "com.zxwl.web.starter.AppProperties",
+      "sourceType": "com.zxwl.web.starter.AppProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "zxwl.app.name",
+      "type": "java.lang.String",
+      "sourceType": "com.zxwl.web.starter.AppProperties",
+      "defaultValue": "default"
+    },
+    {
+      "name": "zxwl.app.comment",
+      "type": "java.lang.String",
+      "sourceType": "com.zxwl.web.starter.AppProperties",
+      "defaultValue": ""
+    },
+    {
+      "name": "zxwl.app.website",
+      "type": "java.lang.String",
+      "sourceType": "com.zxwl.web.starter.AppProperties",
+      "defaultValue": ""
+    },
+    {
+      "name": "zxwl.app.version",
+      "type": "java.lang.String",
+      "sourceType": "com.zxwl.web.starter.AppProperties",
+      "defaultValue": "default"
+    }
+  ],
+  "hints": []
+}

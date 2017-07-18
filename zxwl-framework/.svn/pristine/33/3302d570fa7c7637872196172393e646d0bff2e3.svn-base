@@ -1,0 +1,18 @@
+<!-- jQuery 3.1.1 -->
+<script th:src="@{/plugins/jQuery/jquery-3.1.1.min.js}"></script>
+<script th:src="@{/plugins/jquery-validate/jquery.validate.min.js}"></script>
+<!-- Bootstrap 3.3.7 -->
+<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{/plugins/datatables/jquery.dataTables.min.js}"></script>
+<script th:src="@{/plugins/datatables/dataTables.bootstrap.min.js}"></script>
+<script th:src="@{/plugins/treeview/bootstrap-treeview.min.js}"></script>
+<!-- FastClick -->
+<script th:src="@{/plugins/fastclick/fastclick.js}"></script>
+<!-- AdminLTE App -->
+<script th:src="@{/js/adminlte.js}"></script>
+<script th:src="@{/plugins/ajax/Request.js}"></script>
+<script th:src="@{/plugins/socket/Socket.js}"></script>
+<script th:src="@{/plugins/socket/websocket.js}"></script>
+<script th:src="@{/plugins/toastr/toastr.min.js}"></script>
+<script th:src="@{/js/admin/index.js}"></script>
+

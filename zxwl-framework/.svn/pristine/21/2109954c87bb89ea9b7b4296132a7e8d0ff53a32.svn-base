@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <import th:include="admin/include/head" th:remove="tag"/>
+  <!-- 这里写你要引入的 CSS 或者 head 头内容标记 -->
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+  <import th:include="admin/include/layout" th:remove="tag" />
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <import th:include="admin/include/title" th:remove="tag" />
+
+    <!-- Main content -->
+    <section class="content">
+
+      <div class="box">
+        <div class="box-header with-border">
+          <h3 class="box-title" th:text="${pageTitle}"></h3>
+
+          <div class="box-tools pull-right">
+            <!-- 判断是否有新增权限 Spring EL 表达式语法请自行 Google 或百度查找资料 -->
+            <button th:if="${user.hasAccessModuleAction('user', 'C')}" type="button" class="btn btn-block btn-primary btn-sm btn-add" data-toggle="modal">新增</button>
+          </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+          <table id="user_list" class="table table-bordered table-striped">
+            <thead>
+            <tr>
+              <th >id</th>
+              <th >用户名</th>
+              <th >姓名</th>
+              <th >联系电话</th>
+              <th >创建时间</th>
+              <th >状态</th>
+              <th >操作</th>
+            </tr>
+            </thead>
+          </table>
+        </div>
+      </div>
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+  <import th:include="admin/include/copyright" th:remove="tag"/>
+</div>
+<import th:include="admin/user/form" th:remove="tag"/>
+<!-- 引入底部 footer 公共 JS 部分代码 -->
+<import th:include="admin/include/footer" th:remove="tag"/>
+<!-- 添加本页面单独需要的 JS 文件或代码部分 -->
+<script th:inline="javascript">
+     // 这两行是从后端拿到当前登录用户手否有当前模块的 update, delete 权限
+     var accessUpdate = [[${user.hasAccessModuleAction('user', 'U')}]];
+     var accessDelete = [[${user.hasAccessModuleAction('user', 'D')}]];
+</script>
+<script th:src="@{/js/admin/demo/demo.js}"></script>
+
+</body>
+</html>

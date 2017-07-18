@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zxwl.pay.api.dao.ApyAccountDao">
+    <!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.zxwl.pay.api.entity.ApyAccount" id="apyAccount">
+        <result property="payId" column="pay_id"/>
+        <result property="partner" column="partner"/>
+        <result property="appid" column="appid"/>
+        <result property="publicKey" column="public_key"/>
+        <result property="privateKey" column="private_key"/>
+        <result property="notifyUrl" column="notify_url"/>
+        <result property="returnUrl" column="return_url"/>
+        <result property="seller" column="seller"/>
+        <result property="signType" column="sign_type"/>
+        <result property="inputCharset" column="input_charset"/>
+        <result property="payType" column="pay_type"/>
+        <result property="msgType" column="msg_type"/>
+        <result property="isTest" column="is_test"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+    </resultMap>
+
+    <select id="findByPayId" resultType="com.zxwl.pay.api.entity.ApyAccount">
+        select * from pay_account where pay_id = #{payId}
+    </select>
+
+    <insert id="save" parameterType="com.zxwl.pay.api.entity.ApyAccount" useGeneratedKeys="true" keyProperty="pay_id">
+        insert into pay_account
+        (
+        `pay_id`,
+        `partner`,
+        `appid`,
+        `public_key`,
+        `private_key`,
+        `notify_url`,
+        `return_url`,
+        `seller`,
+        `sign_type`,
+        `input_charset`,
+        `pay_type`,
+        `msg_type`,
+        `is_test`,
+        `create_by`,
+        `create_time`
+        )
+        values
+        (
+        #{payId},
+        #{partner},
+        #{appid},
+        #{publicKey},
+        #{privateKey},
+        #{notifyUrl},
+        #{returnUrl},
+        #{seller},
+        #{signType},
+        #{inputCharset},
+        #{payType},
+        #{msgType},
+        #{isTest},
+        #{createBy},
+        #{createTime}
+        )
+    </insert>
+
+</mapper>

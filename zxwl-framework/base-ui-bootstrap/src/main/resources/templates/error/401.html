@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <base th:href="${#httpServletRequest.contextPath} + '/'" href=""/>
+  <title>错误 401</title>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+  <!-- Bootstrap 3.3.7 -->
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
+  <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.5.0/css/ionicons.min.css"/>
+  <link rel="stylesheet" href="css/AdminLTE.min.css"/>
+  <link rel="stylesheet" href="plugins/iCheck/square/blue.css"/>
+  <link rel="stylesheet" href="plugins/toastr/toastr.min.css"/>
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+  <!-- Google Font -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"/>
+</head>
+<body class="hold-transition login-page">
+<div class="login-box">
+  <div class="login-logo">
+    <a href="javascript:window.history.back();"><b>401</b>错误</a>
+  </div>
+  <div>
+    <p><span th:text="${message}">未知</span>, <span id="ss">3</span> 秒后回到登录页面</p>
+  </div>
+  <!-- /.login-box-body -->
+</div>
+<!-- /.login-box -->
+
+<!-- jQuery 3.1.1 -->
+<script src="plugins/jQuery/jquery-3.1.1.min.js"></script>
+<!-- Bootstrap 3.3.7 -->
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<!-- iCheck -->
+<script src="plugins/iCheck/icheck.min.js"></script>
+<script src="plugins/toastr/toastr.min.js"></script>
+<script th:inline="javascript">
+    $(document).ready(function() {
+        toastr.info("未登录，3 秒后回到登陆页");
+        setTimeout(function(){ location.href = 'admin/login.html'; }, 3 * 1000);
+    });
+</script>
+</body>
+</html>

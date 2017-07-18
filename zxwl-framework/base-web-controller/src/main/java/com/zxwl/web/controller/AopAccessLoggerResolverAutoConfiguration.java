@@ -1,0 +1,86 @@
+package com.zxwl.web.controller;
+
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
+import org.hsweb.commons.StringUtils;
+import com.zxwl.web.bean.po.logger.LoggerInfo;
+import com.zxwl.web.bean.po.user.User;
+import com.zxwl.web.core.exception.BusinessException;
+import com.zxwl.web.core.logger.AccessLoggerPersisting;
+import com.zxwl.web.core.logger.Slf4jAccessLoggerPersisting;
+import com.zxwl.web.core.message.FastJsonHttpMessageConverter;
+import com.zxwl.web.core.message.ResponseMessage;
+import com.zxwl.web.core.utils.WebUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
+
+import javax.annotation.PostConstruct;
+import java.util.List;
+
+@Configuration
+@ConditionalOnProperty(name = "zxwl.access-logger", havingValue = "true")
+public class AopAccessLoggerResolverAutoConfiguration {
+    @Bean
+    public AopAccessLoggerResolverConfiguration aopAccessLoggerResolverConfiguration() {
+        return new AopAccessLoggerResolverConfiguration();
+    }
+
+    @Bean
+    public Slf4jAccessLoggerPersisting slf4jAccessLoggerPersisting() {
+        return new Slf4jAccessLoggerPersisting();
+    }
+
+    @Aspect
+    @Order(Ordered.HIGHEST_PRECEDENCE)
+    static class AopAccessLoggerResolverConfiguration extends com.zxwl.web.core.logger.AopAccessLoggerResolver {
+        @Autowired(required = false)
+        private FastJsonHttpMessageConverter fastJsonHttpMessageConverter;
+
+        @Autowired(required = false)
+        private List<AccessLoggerPersisting> accessLoggerPersisting;
+
+        @PostConstruct
+        private void init() {
+            if (fastJsonHttpMessageConverter == null)
+                fastJsonHttpMessageConverter = new FastJsonHttpMessageConverter();
+        }
+
+        @Around(value = "execution(* com.zxwl.web..controller..*Controller..*(..))||@annotation(com.zxwl.web.core.logger.annotation.AccessLogger)")
+        public Object around(ProceedingJoinPoint pjp) throws Throwable {
+            LoggerInfo loggerInfo = resolver(pjp);
+            long requestTime = System.currentTimeMillis();
+            Object result = null;
+            try {
+                result = pjp.proceed();
+            } catch (Throwable e) {
+                if (!(e instanceof BusinessException)) {
+                    result = ResponseMessage.error(e.getMessage());
+                    loggerInfo.setExceptionInfo(StringUtils.throwable2String(e));
+                } else {
+                    result = ResponseMessage.error(e.getMessage(), ((BusinessException) e).getStatus());
+                }
+                throw e;
+            } finally {
+                long responseTime = System.currentTimeMillis();
+                User user = WebUtil.getLoginUser();
+                loggerInfo.setRequestTime(requestTime);
+                loggerInfo.setResponseTime(responseTime);
+                loggerInfo.setResponseContent(fastJsonHttpMessageConverter.converter(result));
+                if (user != null)
+                    loggerInfo.setUserId(user.getId());
+                if (result instanceof ResponseMessage)
+                    loggerInfo.setResponseCode(String.valueOf(((ResponseMessage) result).getCode()));
+                if (accessLoggerPersisting != null) {
+                    accessLoggerPersisting.forEach(loggerPersisting -> loggerPersisting.save(loggerInfo));
+                }
+            }
+            return result;
+        }
+    }
+
+}

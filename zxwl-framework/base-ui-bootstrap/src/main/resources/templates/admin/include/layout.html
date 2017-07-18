@@ -1,0 +1,146 @@
+<header class="main-header">
+
+    <!-- Logo -->
+    <a href="javascript:;" class="logo">
+        <!-- mini logo for sidebar mini 50x50 pixels -->
+        <span class="logo-mini">+</span>
+        <!-- logo for regular state and mobile devices -->
+        <span class="logo-lg">仪表盘</span>
+    </a>
+
+    <!-- Header Navbar: style can be found in header.less -->
+    <nav class="navbar navbar-static-top">
+        <!-- Sidebar toggle button-->
+        <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+            <span class="sr-only">Toggle navigation</span>
+        </a>
+        <!-- Navbar Right Menu -->
+        <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+                <!-- -->
+                <li class="dropdown tasks-menu">
+                    <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" title="当前在线人数">
+                        <i class="fa fa-flag-o"></i>
+                        <span class="label label-danger online-count">0</span>
+                    </a>
+                </li>
+
+                <!-- User Account: style can be found in dropdown.less -->
+                <li class="dropdown user user-menu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <img src="img/user2-160x160.jpg" class="user-image" alt="User Image"/>
+                        <span class="hidden-xs" th:text="${user.name}">User</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <!-- User image -->
+                        <li class="user-header">
+                            <img src="img/user2-160x160.jpg" class="img-circle" alt="User Image"/>
+
+                            <p>
+                                <span th:remove="tag" th:text="${user.name}"></span>
+                                <small th:text="${#calendars.format(#dates.createNow(), 'yyyy-MM-dd')}"></small>
+                            </p>
+                        </li>
+                        <!-- Menu Body -->
+                        <!-- Menu Footer-->
+                        <li class="user-footer">
+                            <div class="pull-left">
+                                <a th:href="@{/admin/profile.html}" class="btn btn-default btn-flat">个人资料</a>
+                            </div>
+                            <div class="pull-right">
+                                <a href="javascript:;" class="btn btn-default btn-flat btn-logout">登出</a>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+    </nav>
+</header>
+
+<!-- modals -->
+<div class="modal fade" id="modal_confirm" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">提示</h4>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default btn-cancel" data-dismiss="modal">取消</button>
+                <button type="submit" class="btn btn-primary btn-apply">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Left side column. contains the logo and sidebar -->
+<aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+        <!-- Sidebar user panel -->
+        <div class="user-panel">
+            <div class="pull-left image">
+                <img src="img/user2-160x160.jpg" class="img-circle" alt="User Image"/>
+            </div>
+            <div class="pull-left info">
+                <p th:text="${user.name}">User</p>
+                <a href="#"><i class="fa fa-circle text-success"></i> 在线</a>
+            </div>
+        </div>
+
+        <!-- search form -->
+        <!--      <form action="#" method="get" class="sidebar-form">
+                <div class="input-group">
+                  <input type="text" name="q" class="form-control" placeholder="Search..."/>
+                      <span class="input-group-btn">
+                        <button type="submit" name="search" id="search-btn" class="btn btn-flat">
+                          <i class="fa fa-search"></i>
+                        </button>
+                      </span>
+                </div>
+              </form>
+              -->
+        <!-- /.search form -->
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+        <ul class="sidebar-menu" data-widget="tree">
+
+            <li class="header">主菜单</li>
+
+            <li class="treeview"><a th:href="@{/admin/index.html}"><i class="fa fa-dashboard"></i> 主页</a></li>
+
+            <ul th:remove="tag">
+                <!-- th:classappend="${module.active eq '' ? '' : module.active}" -->
+                <li class="" th:class="${module.uri eq '' ? 'treeview' : module.uri}" th:classappend="${#strings.indexOf(module.id, path) != -1 ? 'menu-open' : ''}"  th:each="module: ${menu}">
+
+                    <a href="javascript:;" >
+                        <i class="fa fa-circle-o"></i>
+                        <span th:text="${module.name}"></span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+
+                    <div th:remove="tag" th:if="${module.childList != null or module.childList.length > 0}">
+                        <ul class="treeview-menu">
+                            <li th:each="moduleChild: ${module.childList}" th:class="${#strings.indexOf(moduleChild.uri, path) != -1 ? 'active' : ''}">
+                                <a href="" th:href="@{${moduleChild.uri}}">
+                                    <i class="fa fa-circle-o"></i>
+                                    <span th:text="${moduleChild.name}"></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+            </ul>
+        </ul>
+    </section>
+    <!-- /.sidebar -->
+</aside>

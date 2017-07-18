@@ -1,0 +1,166 @@
+
+<div class="modal fade" id="modal-add">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">新增</h4>
+            </div>
+            <form name="add_form" id="add_form" method="post" action="">
+                <div class="modal-body">
+
+                    <div class="row">
+
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="role_id" class="control-label">角色标识 *</label>
+                                <input type="text" class="form-control" name="role_id" id="role_id" placeholder="必须为英文，且不能超过32个字符"/>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="role_name" class="control-label">角色名称 *</label>
+
+                                <input type="text" class="form-control" name="role_name" id="role_name" value="" placeholder="请输入角色名称"/>
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <div class="form-group">
+                                <label for="role_type" class="control-label">类型</label>
+                                <select name="role_type" id="role_type" class="form-control">
+                                </select>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="role_info" class="control-label">描述/备注</label>
+                                <textarea class="form-control" name="role_info" id="role_info"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="control-label">权限配置</label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- treegrid -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <table id="modules_tb"></table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">取消</button>
+                    <button type="submit" class="btn btn-primary btn-save">保存</button>
+                </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal add -->
+
+<div class="modal fade" id="modal-edit">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">修改</h4>
+            </div>
+            <form name="edit_form" id="edit_form" method="post" action="">
+                <div class="modal-body">
+
+                    <div class="row">
+
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="e_role_id" class="control-label">角色标识 *</label>
+                                <input type="text" class="form-control" disabled="disabled" name="e_role_id" id="e_role_id" placeholder="必须为英文，且不能超过32个字符"/>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="e_role_name" class="control-label">角色名称 *</label>
+
+                                <input type="text" class="form-control" name="e_role_name" id="e_role_name" value="" placeholder="请输入角色名称"/>
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <div class="form-group">
+                                <label for="e_role_type" class="control-label">类型</label>
+                                <select name="e_role_type" id="e_role_type" class="form-control">
+                                </select>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="e_role_info" class="control-label">描述/备注</label>
+                                <textarea class="form-control" name="e_role_info" id="e_role_info"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="control-label">权限配置</label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- treegrid -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <table id="e_modules_tb"></table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">取消</button>
+                    <button type="submit" class="btn btn-primary btn-save">保存</button>
+                </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal edit -->

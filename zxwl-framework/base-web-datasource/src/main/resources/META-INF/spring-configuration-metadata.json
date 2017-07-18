@@ -1,0 +1,227 @@
+{
+  "groups": [
+    {
+      "name": "zxwl.dynamic-datasource",
+      "type": "com.zxwl.web.datasource.dynamic.DynamicDataSourceProperties",
+      "sourceType": "com.zxwl.web.datasource.dynamic.DynamicDataSourceProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "zxwl.dynamic-datasource.name",
+      "type": "java.lang.String",
+      "sourceType": "com.zxwl.web.datasource.dynamic.DynamicDataSourceProperties"
+    },
+    {
+      "name": "zxwl.dynamic-datasource.type",
+      "type": "com.zxwl.web.core.datasource.DatabaseType",
+      "sourceType": "com.zxwl.web.datasource.dynamic.DynamicDataSourceProperties"
+    },
+    {
+      "name": "zxwl.dynamic-datasource.datasource-name",
+      "type": "java.lang.String",
+      "sourceType": "com.zxwl.web.datasource.dynamic.DynamicDataSourceProperties"
+    },
+    {
+      "name": "zxwl.dynamic-datasource.username",
+      "type": "java.lang.String",
+      "sourceType": "com.zxwl.web.datasource.dynamic.DynamicDataSourceProperties"
+    },
+    {
+      "name": "zxwl.dynamic-datasource.password",
+      "type": "java.lang.String",
+      "sourceType": "com.zxwl.web.datasource.dynamic.DynamicDataSourceProperties"
+    },
+    {
+      "name": "zxwl.dynamic-datasource.url",
+      "type": "java.lang.String",
+      "sourceType": "com.zxwl.web.datasource.dynamic.DynamicDataSourceProperties"
+    },
+    {
+      "name": "zxwl.dynamic-datasource.testQuery",
+      "type": "java.lang.String",
+      "sourceType": "com.zxwl.web.datasource.dynamic.DynamicDataSourceProperties"
+    },
+    {
+      "name": "zxwl.dynamic-datasource.login-timeout",
+      "type": "java.lang.Integer",
+      "sourceType": "com.zxwl.web.datasource.dynamic.DynamicDataSourceProperties"
+    },
+    {
+      "name": "zxwl.dynamic-datasource.max-life-time",
+      "type": "java.lang.Integer",
+      "sourceType": "com.zxwl.web.datasource.dynamic.DynamicDataSourceProperties"
+    },
+    {
+      "name": "zxwl.dynamic-datasource.min-pool-size",
+      "type": "java.lang.Integer",
+      "sourceType": "com.zxwl.web.datasource.dynamic.DynamicDataSourceProperties"
+    },
+    {
+      "name": "zxwl.dynamic-datasource.max-pool-size",
+      "type": "java.lang.Integer",
+      "sourceType": "com.zxwl.web.datasource.dynamic.DynamicDataSourceProperties"
+    },
+    {
+      "name": "zxwl.dynamic-datasource.borrow-connection-timeout",
+      "type": "java.lang.Integer",
+      "sourceType": "com.zxwl.web.datasource.dynamic.DynamicDataSourceProperties"
+    },
+    {
+      "name": "zxwl.dynamic-datasource.reap-timeout",
+      "type": "java.lang.Integer",
+      "sourceType": "com.zxwl.web.datasource.dynamic.DynamicDataSourceProperties"
+    },
+    {
+      "name": "zxwl.dynamic-datasource.max-idle-time",
+      "type": "java.lang.Integer",
+      "sourceType": "com.zxwl.web.datasource.dynamic.DynamicDataSourceProperties"
+    },
+    {
+      "name": "zxwl.dynamic-datasource.maintenance-interval",
+      "type": "java.lang.Integer",
+      "sourceType": "com.zxwl.web.datasource.dynamic.DynamicDataSourceProperties"
+    },
+    {
+      "name": "zxwl.dynamic-datasource.default-isolation-level",
+      "type": "java.lang.Integer",
+      "sourceType": "com.zxwl.web.datasource.dynamic.DynamicDataSourceProperties"
+    },
+    {
+      "name": "zxwl.dynamic-datasource.transaction-timeout",
+      "type": "java.lang.Integer",
+      "sourceType": "com.zxwl.web.datasource.dynamic.DynamicDataSourceProperties"
+    },
+    {
+      "name": "zxwl.dynamic-datasource.properties",
+      "type": "java.util.Properties",
+      "sourceType": "com.zxwl.web.datasource.dynamic.DynamicDataSourceProperties"
+    },
+    {
+      "name": "zxwl.dynamic-datasource.icatch",
+      "type": "org.springframework.boot.jta.atomikos.AtomikosProperties",
+      "sourceType": "com.zxwl.web.datasource.dynamic.DynamicDataSourceProperties"
+    },
+    {
+      "name": "zxwl.dynamic-datasource.icatch.service",
+      "type": "String",
+      "sourceType": "org.springframework.boot.jta.atomikos.AtomikosProperties"
+    },
+    {
+      "name": "zxwl.dynamic-datasource.icatch.max-timeout",
+      "type": "long",
+      "sourceType": "org.springframework.boot.jta.atomikos.AtomikosProperties"
+    },
+    {
+      "name": "zxwl.dynamic-datasource.icatch.default-jta-timeout",
+      "type": "long",
+      "sourceType": "org.springframework.boot.jta.atomikos.AtomikosProperties"
+    },
+    {
+      "name": "zxwl.dynamic-datasource.icatch.max-actives",
+      "type": "int",
+      "sourceType": "org.springframework.boot.jta.atomikos.AtomikosProperties"
+    },
+    {
+      "name": "zxwl.dynamic-datasource.icatch.enable-logging",
+      "type": "boolean",
+      "sourceType": "org.springframework.boot.jta.atomikos.AtomikosProperties"
+    },
+    {
+      "name": "zxwl.dynamic-datasource.icatch.transaction-manager-unique-name",
+      "type": "String",
+      "sourceType": "org.springframework.boot.jta.atomikos.AtomikosProperties"
+    },
+    {
+      "name": "zxwl.dynamic-datasource.icatch.serial-jta-transactions",
+      "type": "boolean",
+      "sourceType": "org.springframework.boot.jta.atomikos.AtomikosProperties"
+    },
+    {
+      "name": "zxwl.dynamic-datasource.icatch.force-shutdown-on-vm-exit",
+      "type": "boolean",
+      "sourceType": "org.springframework.boot.jta.atomikos.AtomikosProperties"
+    },
+    {
+      "name": "zxwl.dynamic-datasource.icatch.log-base-name",
+      "type": "String",
+      "sourceType": "org.springframework.boot.jta.atomikos.AtomikosProperties"
+    },
+    {
+      "name": "zxwl.dynamic-datasource.icatch.log-base-dir",
+      "type": "String",
+      "sourceType": "org.springframework.boot.jta.atomikos.AtomikosProperties"
+    },
+    {
+      "name": "zxwl.dynamic-datasource.icatch.checkpoint-interval",
+      "type": "long",
+      "sourceType": "org.springframework.boot.jta.atomikos.AtomikosProperties"
+    },
+    {
+      "name": "zxwl.dynamic-datasource.icatch.console-log-level",
+      "type": "org.springframework.boot.jta.atomikos.AtomikosLoggingLevel",
+      "sourceType": "org.springframework.boot.jta.atomikos.AtomikosProperties"
+    },
+    {
+      "name": "zxwl.dynamic-datasource.icatch.output-dir",
+      "type": "String",
+      "sourceType": "org.springframework.boot.jta.atomikos.AtomikosProperties"
+    },
+    {
+      "name": "zxwl.dynamic-datasource.icatch.console-file-name",
+      "type": "String",
+      "sourceType": "org.springframework.boot.jta.atomikos.AtomikosProperties"
+    },
+    {
+      "name": "zxwl.dynamic-datasource.icatch.console-file-count",
+      "type": "int",
+      "sourceType": "org.springframework.boot.jta.atomikos.AtomikosProperties"
+    },
+    {
+      "name": "zxwl.dynamic-datasource.icatch.console-file-limit",
+      "type": "int",
+      "sourceType": "org.springframework.boot.jta.atomikos.AtomikosProperties"
+    },
+    {
+      "name": "zxwl.dynamic-datasource.icatch.threaded-2pc",
+      "type": "boolean",
+      "sourceType": "org.springframework.boot.jta.atomikos.AtomikosProperties"
+    }
+  ],
+  "hints": [
+    {
+      "name": "zxwl.dynamic-datasource.type",
+      "values": [
+        {
+          "value": "h2",
+          "description": "use h2 database."
+        },
+        {
+          "value": "mysql",
+          "description": "use mysql database."
+        },
+        {
+          "value": "oracle",
+          "description": "use oracle database."
+        }
+      ]
+    },
+    {
+      "name": "zxwl.dynamic-datasource.icatch.console-log-level",
+      "values": [
+        {
+          "value": "INFO",
+          "description": "INFO LEVEL."
+        },
+        {
+          "value": "DEBUG",
+          "description": "DEBUG LEVEL."
+        },
+        {
+          "value": "WARN",
+          "description": "ERROR LEVEL."
+        }
+      ]
+    }
+  ]
+}

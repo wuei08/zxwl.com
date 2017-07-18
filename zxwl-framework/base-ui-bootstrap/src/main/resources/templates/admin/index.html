@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <import th:include="admin/include/head" th:remove="tag"/>
+    <link rel="stylesheet" th:href="@{/plugins/morris/morris.css}"/>
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+    <import th:include="admin/include/layout" th:remove="tag"/>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <import th:include="admin/include/title" th:remove="tag"/>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Title</h3>
+                </div>
+                <div class="box-body">
+                    <div class="row">
+
+                        <div class="col-md-12">
+
+                            <div class="box box-solid bg-teal-gradient">
+                                <div class="box box-solid bg-teal-gradient">
+                                    <div class="box-header">
+                                        <i class="fa fa-th"></i>
+
+                                        <h3 class="box-title">访问人数</h3>
+
+                                    </div>
+                                    <div class="box-body border-radius-none">
+                                        <div class="chart" id="line-chart" style="height: 250px;"></div>
+                                    </div>
+                                    <!-- /.box-body -->
+                                    <div class="box-footer no-border">
+                                        <div class="row">
+                                            <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
+                                                <input type="text" id="ram" class="knob" data-readonly="true" value="0"
+                                                       data-width="120" data-height="120"
+                                                       data-fgColor="#39CCCC"/>
+
+                                                <div class="knob-label">服务器内存占用</div>
+                                            </div>
+                                            <!-- ./col -->
+                                            <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
+                                                <input type="text" id="cpu" class="knob" data-readonly="true" value="0"
+                                                       data-width="120" data-height="120"
+                                                       data-fgColor="#39CCCC"/>
+
+                                                <div class="knob-label">服务器CPU 占用</div>
+                                            </div>
+                                            <!-- ./col -->
+                                            <div class="col-xs-4 text-center">
+                                                <input type="text" id="disk" class="knob" data-readonly="true" value="0"
+                                                       data-width="120" data-height="120"
+                                                       data-fgColor="#39CCCC"/>
+
+                                                <div class="knob-label">硬盘剩余</div>
+                                            </div>
+                                            <!-- ./col -->
+                                        </div>
+                                        <!-- /.row -->
+                                    </div>
+                                    <!-- /.box-footer -->
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+            </div>
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <import th:include="admin/include/copyright" th:remove="tag" />
+
+</div>
+<!-- ./wrapper -->
+
+<import th:include="admin/include/footer" th:remove="tag" />
+<script src="//cdn.bootcss.com/raphael/2.1.0/raphael-min.js"></script>
+<script th:src="@{/plugins/morris/morris.min.js}"></script>
+<script th:src="@{/plugins/knob/jquery.knob.js}"></script>
+<script th:inline="javascript">
+/*<![CDATA[*/
+$(function () {
+
+    var datas = [];
+    for(var i = 0; i < 15; i++) {
+        datas.push({time: new Date(new Date().getTime()-1000*60*(i*2)).format('yyyy-MM-dd hh:mm:ss'), 'item': parseInt(Math.random()*3, 10)});
+    }
+
+    var line = new Morris.Line({
+        element          : 'line-chart',
+        resize           : true,
+        data             : datas,
+        xkey             : 'time',
+        ykeys            : ['item'],
+        labels           : ['在线数'],
+        lineColors       : ['#efefef'],
+        lineWidth        : 2,
+        hideHover        : 'auto',
+        gridTextColor    : '#fff',
+        gridStrokeWidth  : 0.4,
+        pointSize        : 4,
+        pointStrokeColors: ['#efefef'],
+        gridLineColor    : '#efefef',
+        gridTextFamily   : 'Open Sans',
+        gridTextSize     : 10
+    });
+
+
+
+    /* jQueryKnob */
+    $('.knob').knob({
+        'change' : function (v) { console.log(v); }
+    });
+
+    var getloadInfo = function () {
+        Request.get("monitor/info", null, function (e) {
+            if (e.success) {
+                $("#ram").val(e.data.ram).trigger('change');
+                $("#cpu").val(e.data.cpu).trigger('change');
+                $("#disk").val(e.data.disk).trigger('change');
+            }
+        });
+    };
+
+    setInterval(function () {
+        getloadInfo();
+    }, 2000);
+
+    getloadInfo();
+});
+/*]]>*/
+</script>
+</body>
+</html>

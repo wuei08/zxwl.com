@@ -1,0 +1,115 @@
+
+<div class="modal fade" id="modal-add">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">新增用户</h4>
+            </div>
+            <form name="add_form"  id="user_form" method="post">
+                <div class="modal-body">
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="username" class="control-label">用户名:</label>
+                                <input type="text" class="form-control" name="username" id="username" value="" placeholder="请输入用户名" />
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <div class="form-group">
+                                <label for="password" class="control-label">密码:</label>
+                                <input type="text" class="form-control" name="password" id="password" value="" placeholder="请输入密码"/>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="name" class="control-label">姓名:</label>
+                                <input type="text" class="form-control" name="name" id="name" value="" placeholder="请输入姓名"/>
+                            </div>
+
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="phone" class="control-label">电话:</label>
+                                <input type="text" class="form-control" name="phone" id="phone" value="" placeholder="请输入电话"/>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="email" class="control-label">邮箱:</label>
+                                <input type="text" class="form-control" name="email" id="email" value="" placeholder="请输入邮箱"/>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label >角色配置:</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table id="role_list" class="table table-bordered table-striped">
+                                <thead>
+                                <tr>
+                                    <th>
+                                        <input type="checkbox" class="checkall" />
+                                    </th>
+                                    <th >id</th>
+                                    <th >角色名</th>
+                                    <th >备注</th>
+                                </tr>
+                                </thead>
+                            </table>
+
+                        </div>
+                    </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">取消</button>
+                    <button type="submit" class="btn btn-primary">保存</button>
+                </div>
+                </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal add -->
+
+
+<!-- 信息删除确认 -->
+<div class="modal fade" id="modal-delete">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content message_align">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="title">提示信息</h4>
+            </div>
+            <div class="modal-body">
+                <p>您确认要禁用该用户吗？</p>
+            </div>
+            <div class="modal-footer">
+                <input type="hidden" id="url"/>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button"  class="btn btn-success btn-close-sure" data-dismiss="modal">确定</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+

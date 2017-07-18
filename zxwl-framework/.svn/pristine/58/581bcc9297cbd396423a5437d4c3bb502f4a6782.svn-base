@@ -1,0 +1,234 @@
+$(document).ready(function () {
+
+    var inited = false;
+    var area_list = [];
+    var is_add = true;
+
+    var initAreaTree = function () {
+        Request.get("area?paging=false&sorts[0].name=sortIndex", function (e) {
+            area_list = e;
+            console.log(e);
+            var tree = areaTree.init();
+
+            var rootNodes = tree.getRootNodes(e);
+            $('#area_tree').treeview({
+                data: rootNodes
+            });
+
+            $('#area_tree').treeview('selectNode', [0]);
+
+        });
+    };
+
+    initAreaTree();
+
+    var areaTree = {
+        init: function () {
+            if (inited) return this;
+            if (jQuery === undefined){
+                console.error("Required jQuery support is not available");
+            } else {
+                inited = true;
+                var that = this;
+                $(function() {
+
+                });
+            }
+            return this;
+        },
+        load: function () {
+
+        },
+        reload: function () {
+
+        },
+        getRootNodes: function (data) {
+            var that = this;
+            var result = [];
+            $.each(data, function (index, item) {
+                if (item['parentId'] == '-1') {
+                    var obj = {
+                        id: item.id,
+                        cid: index,
+                        parentId: item.parentId,
+                        text: item.areaName,
+                        nodes: []
+                    };
+                    console.log(item.areaName);
+                    console.log(obj);
+                    obj.nodes = that.getChildNodes(data, item);
+                    result.push(obj);
+                }
+            });
+            console.log("-----------");
+            console.log(result);
+            console.log("-----------");
+            return result;
+        },
+        getChildNodes: function (data, parentNode) {
+            var that = this;
+            var result = [];
+            $.each(data, function (i, item) {
+                if (item['parentId'] == parentNode['id']) {
+                    var obj = {
+                        id: item.id,
+                        cid: i,
+                        parentId: parentNode.id,
+                        text: item.name,
+                        nodes: null
+                    };
+                    result.push(obj);
+                    var childNodes = that.getChildNodes(data, item);
+                    if (childNodes != null && childNodes.length > 0) {
+                        obj.nodes = childNodes;
+                    }
+                }
+            });
+            return result;
+        }
+    };
+
+    var switchButtonInit = function () {
+        // size : null, 'mini', 'small', 'normal', 'large'
+        $("input[type='checkbox']").bootstrapSwitch({
+            size: 'mini'
+        });
+    };
+
+
+    $("form#area_form").validate({
+        rules: {
+            area_name: {required: true}
+        },
+        messages: {
+            area_name: {required: "区域名不能为空."},
+        },
+        submitHandler: function (form) {
+            var btn = $('button[type="submit"]');
+            btn.attr('disabled',"true");
+            btn.html("保存中..请稍后");
+            var params = {
+                areaName: $(form).find("#area_name").val(),
+                parentId: $('#area_tree').treeview('getSelected')==null ? '-1' : $('#area_tree').treeview('getSelected')[0].id,
+            };
+            var req = is_add ? Request.post : Request.put;
+
+            var parent = $('#area_tree').treeview('getSelected');
+            console(parent);
+
+            req("area/" + (is_add ? "" : params.parentId), JSON.stringify(params), function (e) {
+
+                if (e.success) {
+                    toastr.info("保存完毕", opts);
+                    $("#modal-add").modal('hide');
+                    initAreaTree();
+                } else {
+                    toastr.error("保存失败", opts)
+                }
+
+                btn.html("保存");
+                btn.removeAttr('disabled');
+            });
+        }
+    });
+
+    $(".box-tools").off('click', '.btn-add').on('click', '.btn-add', function () {
+        $(".modal-title").html("新增区域");
+        $("#modal-add").modal('show');
+        $("input#areaname").val("");
+    });
+
+    // $(".box-tools").off('click', '.btn-delete').on('click', '.btn-delete', function () {
+    //     $(".modal-title").html("删除区域");
+    //     $("#modal-add").modal('show');
+    //     $("input#areaname").val("");
+    // });
+    //
+    // $("#modal-delete").off('click', '.btn-close-sure').on('click', '.btn-close-sure', function () {
+    //     var id = user_id;
+    //     toastr.info("注销中...");
+    //     Request.put("user/" + id + "/disable", {}, function (e) {
+    //         if (e.success) {
+    //             toastr.info("注销成功!");
+    //             user_list.draw( false );
+    //         } else {
+    //             toastr.error(e.message);
+    //         }
+    //     });
+    // });
+
+    // $("#panel-box").off('click', '.btn-del').on('click', '.btn-del', function () {
+    //
+    //     var module_id = $("#module_id").val();
+    //     var module_name = $("#module_name").val();
+    //
+    //     confirm('警告', '真的要删除： [' + module_name + '] 吗，如果为主节点，将会导致子节点都被删除?', function () {
+    //         // 请求 module_id 删除
+    //         var id = module_id;
+    //         Request.delete("module/" + id , {}, function (e) {
+    //             if (e.success) {
+    //                 toastr.success("删除成功");
+    //                 initModuleTree();
+    //             } else {
+    //                 toastr.error(e.message);
+    //             }
+    //         });
+    //     });
+    // });
+
+    // $("form#module_form").validate({
+    //     rules: {
+    //         id: {required: true},
+    //         name: {required: true}
+    //     },
+    //     messages: {
+    //         id: {required: "权限ID 必须填写，且只能英文."},
+    //         name: {required: "权限名称必须填写"}
+    //     },
+    //     submitHandler: function (form) {
+    //         var btn = $('button[type="submit"]');
+    //         btn.attr('disabled',"true");
+    //         btn.html("保存中..请稍后");
+    //         var new_m_option = [];
+    //         $("#m-treegrid tbody tr").each(function(i, item) {
+    //             var tds = $(item).find("td");
+    //             var id = $(tds).eq(1).find("input").val();
+    //             var text = $(tds).eq(2).find("input").val();
+    //             var checked = $(tds).eq(3).find("input").prop("checked")
+    //
+    //             new_m_option.push({id: id, text: text, checked: checked});
+    //         });
+    //
+    //         var params = {
+    //             icon: $(form).find("#module_icon").val(),
+    //             id: $(form).find("#module_id").val(),
+    //             name: $(form).find("#module_name").val(),
+    //             uri: $(form).find("#module_uri").val(),
+    //             parentId: $(form).find("#module_parentId").val() == '' ? '-1' : $(form).find("#module_parentId").val(),
+    //             remark: $(form).find("#module_remark").val(),
+    //             sortIndex: $(form).find("#module_sortIndex").val(),
+    //             optional: new_m_option
+    //         };
+    //
+    //         var type = $(form).find("#is_add").val() == '1';
+    //
+    //         var req = type ? Request.post : Request.put;
+    //
+    //         req("module/" + (type ? "" : params.id), JSON.stringify(params), function (e) {
+    //
+    //             if (e.success) {
+    //                 toastr.info("保存完毕", opts);
+    //                 initModuleTree();
+    //             } else {
+    //                 toastr.error("保存失败", opts)
+    //             }
+    //
+    //             btn.html("保存");
+    //             btn.removeAttr('disabled');
+    //         });
+    //     }
+    // });
+
+
+});
+

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <import th:include="admin/include/head" th:remove="tag" />
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+  <import th:include="admin/include/layout" th:remove="tag"/>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <import th:include="admin/include/title" th:remove="tag"/>
+
+    <!-- Main content -->
+    <section class="content">
+
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+  <import th:include="admin/include/copyright" th:remove="tag"/>
+<!--
+<button class="btn btn-xs btn-danger">
+  <i class="fa fa-remove"></i>
+</button>
+-->
+</div>
+<!-- ./wrapper -->
+
+<import th:include="admin/include/footer" th:remove="tag"/>
+<script th:inline="javascript">
+    var accessCreate = [[${user.hasAccessModuleAction('module', 'C')}]];
+    var accessUpdate = [[${user.hasAccessModuleAction('module', 'U')}]];
+    var accessDelete = [[${user.hasAccessModuleAction('module', 'D')}]];
+</script>
+
+</body>
+</html>

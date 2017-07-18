@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zxwl.platform.dao.ShopDecorationMapper">
+    <resultMap id="ShopDecorationResultMap" type="com.zxwl.platform.bean.ShopDecoration">
+        <id property="id" column="u_id" javaType="string" jdbcType="VARCHAR"/>
+            <result property="shopId" column="shop_id" javaType="String" jdbcType="VARCHAR"/>
+            <result property="content" column="content" javaType="String" jdbcType="CLOB"/>
+            <result property="img1" column="img1" javaType="String" jdbcType="VARCHAR"/>
+            <result property="img2" column="img2" javaType="String" jdbcType="VARCHAR"/>
+            <result property="img3" column="img3" javaType="String" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--用于动态生成sql所需的配置-->
+    <sql id="config">
+        <bind name="resultMapId" value="'ShopDecorationResultMap'"/>
+        <bind name="tableName" value="'t_shop_decoration'"/>
+    </sql>
+    <insert id="insert" parameterType="com.zxwl.web.bean.common.InsertParam" >
+        <include refid="config"/>
+        <include refid="BasicMapper.buildInsertSql"/>
+    </insert>
+
+    <delete id="delete" parameterType="com.zxwl.web.bean.common.DeleteParam">
+        <include refid="config"/>
+        <include refid="BasicMapper.buildDeleteSql"/>
+    </delete>
+
+    <delete id="deleteByShopID" parameterType="com.zxwl.web.bean.common.DeleteParam">
+        delete from t_shop_decoration where shop_id=#{id}
+    </delete>
+
+    <update id="update" parameterType="com.zxwl.web.bean.common.UpdateParam">
+        <include refid="config"/>
+        <include refid="BasicMapper.buildUpdateSql"/>
+    </update>
+
+    <select id="selectByPk" parameterType="string" resultMap="ShopDecorationResultMap">
+        select * from t_shop_decoration where u_id=#{id}
+    </select>
+
+    <select id="selectByShopID" parameterType="string" resultMap="ShopDecorationResultMap">
+        select * from t_shop_decoration where shop_id=#{id}
+    </select>
+
+    <select id="select" parameterType="com.zxwl.web.bean.common.QueryParam" resultMap="ShopDecorationResultMap">
+        <include refid="config"/>
+        <include refid="BasicMapper.buildSelectSql"/>
+    </select>
+
+    <select id="total" parameterType="com.zxwl.web.bean.common.QueryParam" resultType="int">
+        <include refid="config"/>
+        <include refid="BasicMapper.buildTotalSql"/>
+    </select>
+</mapper>

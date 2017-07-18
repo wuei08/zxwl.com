@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>zxwl-framework</artifactId>
+        <groupId>com.zxwl</groupId>
+        <version>2.2.1</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>base-web-pay</artifactId>
+    <packaging>jar</packaging>
+    <description>支付模块</description>
+
+    <properties>
+        <httpmime.version>4.5.2</httpmime.version>
+        <log4j-version>1.2.17</log4j-version>
+        <fastjson-version>1.2.31</fastjson-version>
+        <core-version>3.3.0</core-version>
+        <jdom-version>2.0.2</jdom-version>
+        <servlet-version>3.1.0</servlet-version>
+        <springframework-version>4.3.7.RELEASE</springframework-version>
+    </properties>
+    <dependencies>
+        <!--httpcomponents-->
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpmime</artifactId>
+            <version>${httpmime.version}</version>
+        </dependency>
+        <!--/httpcomponents-->
+        <!-- log4j  -->
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>${log4j-version}</version>
+        </dependency>
+        <!-- / log4j -->
+
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>core</artifactId>
+            <version>${core-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>${fastjson-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jdom</groupId>
+            <artifactId>jdom</artifactId>
+            <version>${jdom-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+            <version>${springframework-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${springframework-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>${springframework-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>${servlet-version}</version>
+        </dependency>
+
+    </dependencies>
+
+</project>

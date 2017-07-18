@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zxwl.web.dao.role.UserRoleMapper">
+    <resultMap id="UserRoleResultMap" type="com.zxwl.web.bean.po.role.UserRole">
+        <id property="id" column="u_id" javaType="string" jdbcType="VARCHAR"/>
+        <result property="userId" column="user_id" javaType="String" jdbcType="VARCHAR"/>
+        <result property="roleId" column="role_id" javaType="String" jdbcType="VARCHAR"/>
+        <collection property="role" column="role_id" jdbcType="VARCHAR" ofType="com.zxwl.web.bean.po.role.Role"
+                    select="com.zxwl.web.dao.role.RoleMapper.selectByPk"></collection>
+    </resultMap>
+
+    <!--用于动态生成sql所需的配置-->
+    <sql id="config">
+        <bind name="resultMapId" value="'UserRoleResultMap'"/>
+        <bind name="tableName" value="'s_user_role'"/>
+    </sql>
+
+    <insert id="insert" parameterType="com.zxwl.web.bean.common.InsertParam">
+        <include refid="config"/>
+        <include refid="BasicMapper.buildInsertSql"/>
+    </insert>
+
+    <delete id="delete" parameterType="com.zxwl.web.bean.common.DeleteParam">
+        <include refid="config"/>
+        <include refid="BasicMapper.buildDeleteSql"/>
+    </delete>
+
+    <delete id="deleteByUserId" parameterType="String">
+        delete from s_user_role where user_id=#{userId}
+    </delete>
+
+    <update id="update" parameterType="com.zxwl.web.bean.common.UpdateParam">
+        <include refid="config"/>
+        <include refid="BasicMapper.buildUpdateSql"/>
+    </update>
+
+    <select id="selectByUserId" parameterType="string" resultMap="UserRoleResultMap">
+        select * from s_user_role where user_id=#{user_id}
+    </select>
+
+    <select id="selectByPk" parameterType="string" resultMap="UserRoleResultMap">
+        select * from s_user_role where u_id=#{u_id}
+    </select>
+
+    <select id="select" parameterType="com.zxwl.web.bean.common.QueryParam" resultMap="UserRoleResultMap">
+        <include refid="config"/>
+        <include refid="BasicMapper.buildSelectSql"/>
+    </select>
+
+    <select id="total" parameterType="com.zxwl.web.bean.common.QueryParam" resultType="int">
+        <include refid="config"/>
+        <include refid="BasicMapper.buildTotalSql"/>
+    </select>
+</mapper>
