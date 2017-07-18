@@ -1,7 +1,7 @@
-package com.zxwl.platform.generator.writer;
+package com.zxwl.web.generator.writer;
 
 import org.hsweb.commons.file.FileUtils;
-import com.zxwl.platform.generator.SourceCode;
+import com.zxwl.web.generator.SourceCode;
 
 import java.io.*;
 

@@ -1,0 +1,88 @@
+
+<div class="modal fade" id="modal-add">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">新增</h4>
+            </div>
+            <form name="add_form" id="add_form" method="post" action="">
+                <div class="modal-body">
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="devNum" class="control-label">设备序号 *</label>
+                                <input type="text" class="form-control" name="devNum" id="devNum" placeholder="请输入设备序号"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="devCode" class="control-label">设备编码 *</label>
+                                <input type="text" class="form-control" name="devCode" id="devCode" value="" placeholder="请输入设备编码"/>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">取消</button>
+                    <button type="submit" class="btn btn-primary btn-save">保存</button>
+                </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal add -->
+
+<div class="modal fade" id="modal-edit">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">修改</h4>
+            </div>
+            <form name="edit_form" id="edit_form" method="post" action="">
+                <div class="modal-body">
+
+                    <div class="row">
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="e_devNum" class="control-label">设备序号 *</label>
+                                <input type="text" class="form-control"  name="e_devNum" id="e_devNum" placeholder="请输入设备序号"/>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="e_devCode" class="control-label">设备编码 *</label>
+                                <input type="text" class="form-control" name="e_devCode" id="e_devCode" value="" placeholder="请输入设备编码"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">取消</button>
+                    <button type="submit" class="btn btn-primary btn-save">保存</button>
+                </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal edit -->

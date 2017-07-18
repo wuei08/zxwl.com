@@ -1,4 +1,4 @@
-package com.zxwl.platform.generator.utils;
+package com.zxwl.web.generator.utils;
 
 import org.hsweb.commons.StringUtils;
 import org.hsweb.ezorm.rdb.executor.SQL;

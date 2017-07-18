@@ -1,6 +1,6 @@
-package com.zxwl.platform.generator.writer;
+package com.zxwl.web.generator.writer;
 
-import com.zxwl.platform.generator.SourceCode;
+import com.zxwl.web.generator.SourceCode;
 
 /**
  * @author zhouhao

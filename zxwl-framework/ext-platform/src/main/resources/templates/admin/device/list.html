@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <import th:include="admin/include/head" th:remove="tag" />
+  <link rel="stylesheet" th:href="@{/plugins/jquery-treegrid/css/jquery.treegrid.css}"/>
+  <link rel="stylesheet" th:href="@{/plugins/datepicker/bootstrap-datetimepicker.min.css}"/>
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+  <import th:include="admin/include/layout" th:remove="tag" />
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <import th:include="admin/include/title" th:remove="tag" />
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="box">
+        <div class="box-header with-border">
+          <h3 class="box-title">设备管理</h3>
+
+          <div class="box-tools pull-right">
+            <!-- 判断是否有新增权限 -->
+            <button th:if="${user.hasAccessModuleAction('device', 'C')}" type="button" class="btn btn-block btn-primary btn-sm btn-add" data-toggle="modal" data-target="#modal-add">新增</button>
+          </div>
+        </div>
+        <div class="box-body">
+
+          <table id="role_list" class="table table-bordered table-striped table_test">
+            <thead id="table_header">
+            <tr>
+              <th>ID</th>
+              <th>设备标题</th>
+              <th>设备序号</th>
+              <th>设备编码</th>
+              <th>生产时间</th>
+              <th>出厂时间</th>
+              <th>投放时间</th>
+              <th>备注</th>
+              <th>操作</th>
+            </tr>
+            </thead>
+          </table>
+
+          <table id="use_list" class="table table-bordered table-striped" style="margin-top: 10px">
+            <h4>使用历史记录</h4>
+            <thead>
+            <tr>
+              <th>ID</th>
+              <th>店铺名称</th>
+              <th>详细地址</th>
+              <th>开始时间</th>
+              <th>结束时间</th>
+              <th>适用类型</th>
+              <th>费用（元）</th>
+            </tr>
+            </thead>
+          </table>
+        </div>
+        <!-- /.box-body -->
+      </div>
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+  <import th:include="admin/include/copyright" th:remove="tag" />
+
+</div>
+
+<!-- ./wrapper -->
+<import th:include="admin/device/form" th:remove="tag" />
+
+<import th:include="admin/include/footer" th:remove="tag" />
+
+</body>
+<!-- bootstrap treegrid -->
+<script th:src="@{/plugins/jquery-treegrid/js/jquery.treegrid.min.js}"></script>
+<script th:src="@{/plugins/jquery-treegrid/js/jquery.treegrid.bootstrap3.js}"></script>
+<script th:src="@{/plugins/jquery-treegrid/extension/jquery.treegrid.extension.js}"></script>
+<script th:src="@{/plugins/datepicker/bootstrap-datetimepicker.js}"></script>
+<script th:src="@{/plugins/datepicker/locales/bootstrap-datepicker.zh-CN.js}"></script>
+
+<script th:inline="javascript">
+    var accessCreate = [[${user.hasAccessModuleAction('device', 'C')}]];
+    var accessUpdate = [[${user.hasAccessModuleAction('device', 'U')}]];
+    var accessDelete = [[${user.hasAccessModuleAction('device', 'D')}]];
+</script>
+<script th:src="@{/js/admin/device/device.js}"></script>
+<script th:inline="javascript">
+  /*<![CDATA[*/
+    $('.form_datetime').datetimepicker({
+        language:  'zh-CN',
+        weekStart: 1,
+        todayBtn:  1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        forceParse: 0,
+        showMeridian: 1
+    });
+    $('.form_date').datetimepicker({
+        language:  'zh-CN',
+        weekStart: 1,
+        todayBtn:  1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        minView: 2,
+        forceParse: 0
+    });
+    $('.form_time').datetimepicker({
+        language:  'zh-CN',
+        weekStart: 1,
+        todayBtn:  1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 1,
+        minView: 0,
+        maxView: 1,
+        forceParse: 0
+    });
+
+  /*]]>*/
+</script>
+
+
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="utf-8" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <import th:include="admin/include/head" th:remove="tag"/>
+    <link rel="stylesheet" th:href="@{/plugins/jquery-treegrid/css/jquery.treegrid.css}"/>
+    <link rel="stylesheet" th:href="@{/plugins/bootstrap-switch/css/bootstrap-switch.min.css}"/>
+    <style>
+        .input-sm {
+            border: none;
+            background-color: transparent;
+        }
+
+        .input-sm:hover {
+            border-radius: 0;
+            box-shadow: none;
+            border: 1px solid #ccc;
+            border-color: #d2d6de;
+            height: 30px;
+            padding: 5px 10px;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+    <import th:include="admin/include/layout" th:remove="tag"/>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <!--<import th:include="admin/include/title" th:remove="tag"/>-->
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">会员管理</h3>
+                    <div class="box-tools">
+                        <div class="col-sm-4">
+                            <div class="input-group">
+                                <input type="text" id="search_content" class="form_control"/>
+                                <span class="input-group-addon">
+                                <i id="search_icon" class="glyphicon glyphicon-search"></i>
+                            </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div id="area_tree"></div>
+                        </div>
+
+                        <div class="box-body col-md-9">
+                            <table class="table table-condensed table-hover" id="user_list">
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>账号</th>
+                                    <th>头像</th>
+                                    <th>昵称</th>
+                                    <th>性别</th>
+                                    <th>年龄</th>
+                                    <th>身高(cm)</th>
+                                    <th>体重(kg)</th>
+                                    <th>联系方式</th>
+                                    <th>操作</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+</div>
+<!--&lt;!&ndash; /.box-body &ndash;&gt;-->
+<!--</div>-->
+
+<!--&lt;!&ndash; /.content &ndash;&gt;-->
+<!--</div>-->
+<!--&lt;!&ndash; /.content-wrapper &ndash;&gt;-->
+
+<import th:include="admin/include/copyright" th:remove="tag"/>
+
+
+<!--
+<button class="btn btn-xs btn-danger">
+  <i class="fa fa-remove"></i>
+</button>
+-->
+<!--</div>-->
+<!-- ./wrapper -->
+<div th:include="admin/shop/form" th:remove="tag"></div>
+<import th:include="admin/include/footer" th:remove="tag"/>
+<script th:src="@{/plugins/jquery-treegrid/js/jquery.treegrid.min.js}"></script>
+<script th:src="@{/plugins/jquery-treegrid/js/jquery.treegrid.bootstrap3.js}"></script>
+<script th:src="@{/plugins/bootstrap-switch/js/bootstrap-switch.min.js}"></script>
+<!--<script th:inline="javascript">-->
+<!--//    var accessCreate = [[${user.hasAccessModuleAction('module', 'C')}]];-->
+<!--//    var accessUpdate = [[${user.hasAccessModuleAction('module', 'U')}]];-->
+<!--//    var accessDelete = [[${user.hasAccessModuleAction('module', 'D')}]];-->
+<!--</script>-->
+
+<script th:src="@{/js/admin/userInfo/userInfo.js}"></script>
+
+</body>
+</html>

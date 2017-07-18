@@ -1,9 +1,9 @@
-package com.zxwl.platform.generator.support.freemarker;
+package com.zxwl.web.generator.support.freemarker;
 
 import com.zxwl.expandes.template.Template;
-import com.zxwl.platform.generator.Generator;
-import com.zxwl.platform.generator.template.CodeTemplate;
-import com.zxwl.platform.generator.utils.GeneratorUtils;
+import com.zxwl.web.generator.Generator;
+import com.zxwl.web.generator.template.CodeTemplate;
+import com.zxwl.web.generator.utils.GeneratorUtils;
 
 import java.util.HashMap;
 import java.util.Map;

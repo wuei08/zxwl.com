@@ -1,0 +1,16 @@
+#LOGGING
+logging:
+    config: classpath:config/logback.xml
+zxwl:
+    dynamic-datasource: #动态数据源配置
+          #url: jdbc:h2:file:./data/h2db;DB_CLOSE_ON_EXIT=FALSE
+          url: jdbc:mysql://192.168.199.100:3306/base?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
+          type: mysql
+          username: root
+          password: root
+          icatch:
+            max-actives: 100
+            output-dir: ./data/atomikos
+            log_base_dir: ./data/atomikos
+            default-jta-timeout: 300000
+    access-logger: on #开启访问日志

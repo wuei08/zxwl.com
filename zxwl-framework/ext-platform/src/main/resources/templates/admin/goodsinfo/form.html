@@ -1,0 +1,54 @@
+
+<div class="modal fade" id="modal-tree">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">服装类别操作</h4>
+            </div>
+            <form name="add_tree_form"  id="add_tree_form" method="post">
+                <div class="modal-body">
+                    <!-- id -->
+                    <input type="hidden" name="uid" id="id" value="" />
+                    <!-- 父id -->
+                    <input type="hidden" name="parentCode" id="parent_code" value=""/>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="parent_code" class="control-label">添加到：</label>
+                                <input type="text" class="form-control" name="preClassName" id="parent_code_name" value="" disabled="disabled" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="class_code" class="control-label">类别编码:</label>
+                                <input type="text" class="form-control" name="classCode" id="class_code" value="" placeholder="请输入类别" />
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="class_name" class="control-label">类别名称:</label>
+                                <input type="text" class="form-control" name="className" id="class_name" value="" placeholder="请输入类别名称"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">取消</button>
+                        <button type="submit" class="btn btn-primary">保存</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal add -->
+

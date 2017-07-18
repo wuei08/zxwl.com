@@ -1,4 +1,4 @@
-package com.zxwl.platform.generator.template;
+package com.zxwl.web.generator.template;
 
 import java.util.Map;
 

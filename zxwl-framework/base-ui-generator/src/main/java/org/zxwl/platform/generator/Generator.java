@@ -1,6 +1,6 @@
-package com.zxwl.platform.generator;
+package com.zxwl.web.generator;
 
-import com.zxwl.platform.generator.template.CodeTemplate;
+import com.zxwl.web.generator.template.CodeTemplate;
 
 import java.util.List;
 

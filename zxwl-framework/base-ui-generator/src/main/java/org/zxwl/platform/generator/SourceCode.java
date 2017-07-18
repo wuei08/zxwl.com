@@ -1,8 +1,8 @@
-package com.zxwl.platform.generator;
+package com.zxwl.web.generator;
 
-import com.zxwl.platform.generator.writer.AppendSourceWriter;
-import com.zxwl.platform.generator.writer.DefaultSourceWriter;
-import com.zxwl.platform.generator.writer.SourceWriter;
+import com.zxwl.web.generator.writer.AppendSourceWriter;
+import com.zxwl.web.generator.writer.DefaultSourceWriter;
+import com.zxwl.web.generator.writer.SourceWriter;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
