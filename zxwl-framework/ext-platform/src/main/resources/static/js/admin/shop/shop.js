@@ -130,6 +130,7 @@ $(document).ready(function () {
         columns: [
             // {"data": "num"},
             {"data": "id"},
+            {"data": null},
             {"data": "shopName"},
             {"data": "principal"},
             {"data": "principalTel"},
@@ -141,11 +142,16 @@ $(document).ready(function () {
             {"data": "content"},
             {"data": null}
         ],
-
+        "aoColumnDefs": [{
+            "searchable": false,
+            "orderable": false,
+            "targets": 1
+        }],
+        "order": [[2, 'asc']],
         "aoColumnDefs": [
             {
                 "sClass": "center",
-                "aTargets": [10],
+                "aTargets": [11],
                 "mData": "id",
                 "mRender": function (a, b, c, d) {//a表示statCleanRevampId对应的值，c表示当前记录行对象
                     // 修改 删除 权限判断
@@ -161,17 +167,17 @@ $(document).ready(function () {
 
     });
     shop_list.column(0).visible(false);
-    shop_list.column(8).visible(false);
+    shop_list.column(10).visible(false);
     shop_list.column(9).visible(false);
+    shop_list.column(8).visible(true);
+
+    $('#shop_list').on( 'draw.dt', function () {
+        var nodes = shop_list.column(1).nodes();
+        for (var i = 0; i < nodes.length; i++) {
+            nodes[i].innerHTML = i + 1;
+        }
+    } );
     shop_list.columns().draw();
-
-    var switchButtonInit = function () {
-        // size : null, 'mini', 'small', 'normal', 'large'
-        $("input[type='checkbox']").bootstrapSwitch({
-            size: 'mini'
-        });
-    };
-
 
     $("form#shop_form").validate({
         rules: {

@@ -154,6 +154,12 @@ $(document).ready(function () {
         ]
 
     });
+    $('#user_list').on( 'draw.dt', function () {
+        var nodes = user_list.column(1).nodes();
+        for (var i = 0; i < nodes.length; i++) {
+            nodes[i].innerHTML = i + 1;
+        }
+    } );
     user_list.columns().draw();
 
     //删除店铺操作
