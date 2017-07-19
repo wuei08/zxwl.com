@@ -7,8 +7,8 @@
         <id property="id" column="u_id" javaType="string" jdbcType="VARCHAR"/>
             <result property="name" column="name" javaType="String" jdbcType="VARCHAR"/>
             <result property="age" column="age" javaType="int" jdbcType="INTEGER"/>
-            <result property="sex" column="sex" javaType="String" jdbcType="VARCHAR"/>
-            <result property="high" column="high" javaType="double" jdbcType="DECIMAL"/>
+            <result property="sex" column="sex" javaType="String" jdbcType="TINYINT"/>
+            <result property="height" column="height" javaType="double" jdbcType="DECIMAL"/>
             <result property="weight" column="weight" javaType="double" jdbcType="DECIMAL"/>
             <result property="telephone" column="telephone" javaType="String" jdbcType="VARCHAR"/>
             <result property="imgUrl" column="img_url" javaType="String" jdbcType="VARCHAR"/>

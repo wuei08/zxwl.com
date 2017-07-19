@@ -20,7 +20,6 @@ $(document).ready(function () {
     };
 
     initAreaTree();
-
     var areaTree = {
         init: function () {
             if (inited) return this;
@@ -126,17 +125,16 @@ $(document).ready(function () {
             });
         },
         columns: [
-            // {"data": "num"},
             {"data": "id"},
             {"data": "userId"},
             {"data": "imgUrl"},
             {"data": "name"},
             {"data": "sex"},
             {"data": "age"},
-            {"data": "hight"},
+            {"data": "height"},
             {"data": "weight"},
             {"data": "telephone"},
-            {"data": null}
+            {"data": "status"}
         ],
 
         "aoColumnDefs": [
@@ -147,31 +145,55 @@ $(document).ready(function () {
                 "mRender": function (a, b, c, d) {//a表示statCleanRevampId对应的值，c表示当前记录行对象
                     // 修改 删除 权限判断
                     var buttons = '';
-                    buttons += '<button type="button" data-id="' + c.id + '" data-name="' + c.name + '" class="btn btn-default btn-sm btn-forbidden">禁用</button>\n';
+                    if (a == 1) {
+                        buttons = '<button type="button" data-id="' + c.id + '" data-name="' + c.name + '" class="btn btn-danger btn-sm btn-close">禁用</button>';
+                    }
+                    else {
+                        buttons = '<button type="button" data-id="' + c.id + '" data-name="' + c.name + '" class="btn btn-success btn-sm btn-open">启用</button>';
+                    }
                     return buttons;
                 }
             }
         ]
 
     });
-    $('#user_list').on( 'draw.dt', function () {
-        var nodes = user_list.column(1).nodes();
+
+    $('#user_list').on('draw.dt', function () {
+        var nodes = user_list.column(0).nodes();
         for (var i = 0; i < nodes.length; i++) {
             nodes[i].innerHTML = i + 1;
         }
-    } );
+    });
     user_list.columns().draw();
 
-    //删除店铺操作
-    $("#user_list").off('click', '.btn-forbidden').on('click', '.btn-forbidden', function () {
+    //禁用操作
+    $("#user_list").off('click', '.btn-close').on('click', '.btn-close', function () {
         var that = $(this);
         var userInfo_id = that.data('id');
         var user_name = that.data('name');
-        confirm('警告', '真的要禁用： [id: ' + userInfo_id + "  name: " + user_name + '] 吗?', function () {
+        confirm('警告', '真的要禁用：  ' + user_name + '] 吗?', function () {
             // 请求 module_id 删除
-            Request.delete("userInfo/" + userInfo_id, {}, function (e) {
+            Request.delete("userInfo/close/" + userInfo_id, {}, function (e) {
                 if (e.success) {
-                    toastr.success("删除成功");
+                    toastr.success("禁用成功");
+                    user_list.draw();
+                } else {
+                    toastr.error(e.message);
+                }
+            });
+        });
+    });
+
+    //启用操作
+    $("#user_list").off('click', '.btn-open').on('click', '.btn-open', function () {
+        var that = $(this);
+        var userInfo_id = that.data('id');
+        var user_name = that.data('name');
+        confirm('真的要启用： ' + user_name + '] 吗?', function () {
+            // 请求 module_id 删除
+            Request.delete("userInfo/open/" + userInfo_id, {}, function (e) {
+                if (e.success) {
+                    toastr.success("启用成功");
                     user_list.draw();
                 } else {
                     toastr.error(e.message);

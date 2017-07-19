@@ -14,6 +14,16 @@ public class UserInfo extends GenericPo<String> {
     //
     private String sex;
 
+    private int status;
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
     public String getSex() {
         return sex;
     }
@@ -22,7 +32,7 @@ public class UserInfo extends GenericPo<String> {
         this.sex = sex;
     }
 
-    private double high;
+    private double height;
     //
     private double weight;
     //
@@ -73,15 +83,15 @@ public class UserInfo extends GenericPo<String> {
      *
      * @return double
      */
-    public double getHigh() {
-        return this.high;
+    public double getHeight() {
+        return this.height;
     }
 
     /**
      * 设置
      */
-    public void setHigh(double high) {
-        this.high = high;
+    public void setHeight(double height) {
+        this.height = height;
     }
 
     /**

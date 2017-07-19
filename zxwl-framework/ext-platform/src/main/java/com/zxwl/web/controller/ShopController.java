@@ -54,7 +54,6 @@ public class ShopController extends  GenericController<Shop, String>{
         // 获取条件查询
         List<Shop> shopList;
         List<ShopDecoration> shopDecorationList;
-        Object data;
         if (!param.isPaging()){
 
             shopList = getService().select(param);
@@ -77,9 +76,8 @@ public class ShopController extends  GenericController<Shop, String>{
         }
         else{
             PagerResult<Shop> pagerResult = getService().selectPager(param);
-            PagerResult<ShopDecoration> pagerResultDe = shopDecorationService.selectPager(param);
+            shopDecorationList = shopDecorationService.select(param);
             shopList = pagerResult.getData();
-            shopDecorationList = pagerResultDe.getData();
             for(Shop shop:shopList){
                 for(ShopDecoration shopDecoration:shopDecorationList){
                     if(shop.getId() != null && shop.getId().equals(shopDecoration.getShopId())){

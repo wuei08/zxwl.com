@@ -13,9 +13,6 @@ $(document).ready(function () {
             var rootNodes = tree.getRootNodes(e);
             $('#area_tree').treeview({
                 data: rootNodes
-                // onNodeSelected: function (event, data) {
-                //     alert(data.text + "->  parentId :" + data.parentId);
-                // }
             });
             $('#area_tree').treeview('selectNode', [0]);
         });
@@ -258,7 +255,6 @@ $(document).ready(function () {
     $(".box-tools").off('click', '.btn-add').on('click', '.btn-add', function () {
         var selected = $('#area_tree').treeview('getSelected');
         if (selected.length == 0) {
-            alert("in botton-add");
             toastr.info("请选择新增店铺所处区域", opts);
         }
         else {
@@ -312,8 +308,6 @@ $(document).ready(function () {
         var rows = shop_list.rows().data();
         for (var i = 0; i < rows.length; i++) {
             if (rows[i]["id"] == shop_id) {
-                alert('[获取数据]' + rows[i].shopName);
-
                 $(".modal-title").html("编辑店铺");
                 $("#modal-add").modal('show');
 
