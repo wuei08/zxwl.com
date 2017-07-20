@@ -5,6 +5,7 @@
     <import th:include="admin/include/head" th:remove="tag"/>
     <link rel="stylesheet" th:href="@{/plugins/jquery-treegrid/css/jquery.treegrid.css}"/>
     <link rel="stylesheet" th:href="@{/plugins/bootstrap-switch/css/bootstrap-switch.min.css}"/>
+    <link rel="stylesheet" th:href="@{/plugins/fileinput/css/fileinput.css}"/>
     <style>
         .input-sm {
             border: none;
@@ -21,6 +22,12 @@
             font-size: 12px;
             line-height: 1.5;
         }
+
+        .modal-body {
+            overflow-y: scroll;
+            overflow-x: hidden;
+        }
+
     </style>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -39,7 +46,7 @@
                 <div class="box-header with-border">
                     <h3 class="box-title">店铺管理</h3>
                     <div class="box-tools">
-                        <button type="button" class="btn btn-default btn-add">添加店铺</button>
+                        <button th:if="${user.hasAccessModuleAction('shop', 'C')}" type="button" class="btn btn-default btn-add">添加店铺</button>
                         <!--<div class="col-sm-4">-->
                         <!--<div class="input-group">-->
                             <!--<input type="text" id="search_content" class="form_control"/>-->
@@ -108,11 +115,8 @@
 <script th:src="@{/plugins/jquery-treegrid/js/jquery.treegrid.min.js}"></script>
 <script th:src="@{/plugins/jquery-treegrid/js/jquery.treegrid.bootstrap3.js}"></script>
 <script th:src="@{/plugins/bootstrap-switch/js/bootstrap-switch.min.js}"></script>
-<!--<script th:inline="javascript">-->
-    <!--//    var accessCreate = [[${user.hasAccessModuleAction('module', 'C')}]];-->
-    <!--//    var accessUpdate = [[${user.hasAccessModuleAction('module', 'U')}]];-->
-    <!--//    var accessDelete = [[${user.hasAccessModuleAction('module', 'D')}]];-->
-<!--</script>-->
+<script th:src="@{/plugins/fileinput/js/fileinput.js}"></script>
+<script th:src="@{/plugins/fileinput/js/locales/zh.js}"></script>
 
 <script th:src="@{/js/admin/shop/treegrid.js}"></script>
 <script th:src="@{/js/admin/shop/shop.js}"></script>

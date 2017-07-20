@@ -173,7 +173,7 @@ body {
 {
     height: 25px;
     width:  26px;
-    background: transparent background:url(img/ico-8.gif) no-repeat 0 0;
+    background: transparent url(img/ico-8.gif) no-repeat 0 0;
     cursor: pointer;
 }
 
