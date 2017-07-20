@@ -3,7 +3,9 @@ $(document).ready(function () {
     var area_list = [];
     var is_add = true;
     var shop_id = null;
-    var addShopId=null;
+    var logoUrl = null;
+    var businessUrl = null;
+    var imgUrl = [];
 
     var initAreaTree = function () {
         Request.get("area?paging=false&sorts[0].name=sortIndex", function (e) {
@@ -183,7 +185,8 @@ $(document).ready(function () {
         var control = $('#business_url');
         control.fileinput({
             language: 'zh', //设置语言
-            showUpload: false, //是否显示上传按钮
+            uploadUrl:'file/singleUpload',
+            showUpload: true, //是否显示上传按钮
             showRemove: true,
             dropZoneEnabled: false,
             showCaption: true,//是否显示标题
@@ -192,25 +195,23 @@ $(document).ready(function () {
             allowedFileExtensions: ['jpg', 'png', 'jpeg'],
             maxFileSize: 2000,
             maxFileCount: 1,
-            uploadAsync: false, //同步上传
-            uploadExtraData: function(previewId, index) {   //额外参数 返回json数组
-                return {
-                    'id':commId,
-                    'name':"business_url"
-                };
-            }
-        }).on("filebatchuploadsuccess", function(event, data) {
+            uploadAsync: true //同步上传
+        }).on("fileuploaded", function(event, data, previewId, index) {
             var response = data.response;
-            if(response.resultCode!='0'){
+            if(data.response.code !='200'){
                 toastr("上传营业执照图片失败，请重试！", opts);
             }
+            else{
+                businessUrl = data.response.data.id;
+            }
 
-        })
+        });
 
         control = $('#logo');
         control.fileinput({
             language: 'zh', //设置语言
-            showUpload: false, //是否显示上传按钮
+            uploadUrl:'file/singleUpload',
+            showUpload: true, //是否显示上传按钮
             showRemove: true,
             dropZoneEnabled: false,
             showCaption: true,//是否显示标题
@@ -219,14 +220,22 @@ $(document).ready(function () {
             allowedFileExtensions: ['jpg', 'png', 'jpeg'],
             maxFileSize: 2000,
             maxFileCount: 1,
-            uploadAsync: false //同步上传
+            uploadAsync: true //同步上传
+        }).on("fileuploaded", function(event, data,previewId, index) {
+            if(data.response.code !='200'){
+                toastr("上传Logo图片失败，请重试！", opts);
+            }
+            else{
+                logoUrl = data.response.data.id;
+            }
 
-        })
+        });
 
         control = $('#img1' );
         control.fileinput({
             language: 'zh', //设置语言
-            showUpload: false, //是否显示上传按钮
+            uploadUrl:'file/singleUpload',
+            showUpload: true, //是否显示上传按钮
             showRemove: true,
             dropZoneEnabled: false,
             showCaption: true,//是否显示标题
@@ -235,12 +244,16 @@ $(document).ready(function () {
             allowedFileExtensions: ['jpg', 'png', 'jpeg'],
             maxFileSize: 2000,
             maxFileCount: 3,
-            uploadAsync: false //同步上传
-            //initialPreview: [
-            //预览图片的设置
-            //      "<img src='http://127.0.0.1:8080/NewsManageSys/plugin/umeditor1_2_2/jsp/upload/20161030/55061                  477813913474.jpg' class='file-preview-image' alt='肖像图片' title='肖像图片'>",
-            //],
-        })
+            uploadAsync: true //同步上传
+        }).on("fileuploaded", function(event, data,previewId, index) {
+            var response = data.response;
+            if(data.response.code !='200'){
+                toastr("上传店铺图片失败，请重试！", opts);
+            }
+            else{
+                imgUrl.push(data.response.data.id);
+            }
+        });
 
     };
 
@@ -277,26 +290,28 @@ $(document).ready(function () {
             //在选中节点的子节点添加节点
 
             if (is_add) {     //添加
-                if($('#business_url').fileinput('getFileCount')<=0){
+                if(businessUrl == null){
                     toastr.info("请选择一张营业执照！",opts);
                 }else {
-                    if ($('#img1').fileinput('getFileCount') <= 0) {
+                    if (imgUrl.length == 0) {
                         toastr.info("请选择一张店铺照片！", opts);
                     }
                     else {
-                        if($('#logo').fileinput('getFileCount')<=0){
+                        if(logoUrl == null){
                             toastr.info("请选择一张店铺Logo照片！", opts);
                         }
                         else{
                             var params = {
                                 shopName: $(form).find("#shop_name").val(),
-                                logo: $(form).find("#logo").val(),
+                                logo: logoUrl,
                                 principal: $(form).find("#principal").val(),
                                 principalTel: $(form).find("#principal_tel").val(),
                                 legalName: $(form).find("#legal_name").val(),
-                                businessUrl: $(form).find("#business_url").val(),
+                                businessUrl: businessUrl,
                                 address: $(form).find("#address").val(),
-                                img1: $(form).find("#img1").val(),
+                                img1: imgUrl[0],
+                                img2: null,
+                                img3: null,
                                 areaId: selected[0].id,
                                 content: $(form).find("#content").val()
                             };
@@ -308,24 +323,35 @@ $(document).ready(function () {
                 var params = {
                     id: shop_id,
                     shopName: $(form).find("#shop_name").val(),
-                    logo: $(form).find("#logo").val(),
+                    logo: logoUrl,
                     principal: $(form).find("#principal").val(),
                     principalTel: $(form).find("#principal_tel").val(),
                     legalName: $(form).find("#legal_name").val(),
-                    businessUrl: $(form).find("#business_url").val(),
+                    businessUrl: businessUrl,
                     address: $(form).find("#address").val(),
-                    img1: $(form).find("#img1").val(),
+                    img1: imgUrl[0],
+                    img1: null,
+                    img1: null,
                     content: $(form).find("#content").val()
                 };
             }
+            if(imgUrl.length >= 2){
+                params.img2 = imgUrl[1]
+            }
+            if(imgUrl.length == 3){
+                params.img3 = imgUrl[2]
+            }
+
             var req = is_add ? Request.post : Request.put;
 
             req("shop/" + (is_add ? "" : params.id), JSON.stringify(params), function (e) {
                 if (e.success) {
                     toastr.info("保存完毕", opts);
                     $("#modal-add").modal('hide');
-                    addShopId = e.get('id');
                     shop_list.draw();
+                    logoUrl = null;
+                    businessUrl = null;
+                    imgUrl = [];
                 } else {
                     toastr.error("保存失败", opts)
                 }
@@ -346,16 +372,16 @@ $(document).ready(function () {
 
             $(".modal-title").html("新增店铺");
             $("#modal-add").modal('show');
-
-            $("input#shop_name").val("");
-            $("input#principal").val("");
-            $("input#principal_tel").val("");
-            $("input#legal_name").val("");
-            $("input#business_url").val("");
-            $("input#address").val("");
-            $("input#img1").val("");
-            $("input#content").val("");
-            $("input#logo").val("");
+            //
+            // $("input#shop_name").val("");
+            // $("input#principal").val("");
+            // $("input#principal_tel").val("");
+            // $("input#legal_name").val("");
+            // $("input#business_url").val("");
+            // $("input#address").val("");
+            // $("input#img1").val("");
+            // $("input#content").val("");
+            // $("input#logo").val("");
 
             is_add = true;
         }
@@ -410,23 +436,6 @@ $(document).ready(function () {
             }
         }
     });
-
-    //添加店铺确认按钮
-    function addShop() {
-        if($('#business_url').fileinput('getFileCount')<=0){
-            toastr.info("请选择一张营业执照！",opts);
-        }else{
-            if($('#img1').fileinput('getFileCount')<=0){
-                toastr.info("请选择一张营业执照！", opts);
-            }
-            else{
-
-
-            }
-        }
-
-    }
-
 
 });
 
